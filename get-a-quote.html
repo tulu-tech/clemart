@@ -1174,12 +1174,38 @@ Preferred Contact: ${contact}
 
       window.location.href = `mailto:ayse@clem-arts.com?subject=${subject}&body=${body}`;
 
+      // ── CONVERSION: Form Submitted ──────────────────────────────
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'quote_form_submitted',
+        form_type: 'bespoke_frame_quote',
+        artwork_type: artType,
+        frame_style: style,
+        budget_range: budget,
+        contact_method: contact
+      });
+
       // Show success
       document.getElementById(`step-4`).classList.remove('active');
       document.getElementById('qSteps').style.opacity = '0.3';
       document.getElementById('qSuccess').style.display = 'block';
       progressFill.style.width = '100%';
     }
+
+    // ── CONVERSION: 3-Minute Engagement ──────────────────────────
+    (function() {
+      var _engaged = false;
+      setTimeout(function() {
+        if (_engaged) return;
+        _engaged = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'engaged_3_minutes',
+          page_path: window.location.pathname,
+          page_title: document.title
+        });
+      }, 180000); // 3 dakika = 180,000 ms
+    })();
 
     // ─── FILE UPLOAD PREVIEW ───
     const fileInput  = document.getElementById('artworkFile');

@@ -272,3 +272,24 @@
   }
 
 })();
+
+/* ── CONVERSION: 3-Minute Engagement (tüm sayfalar) ──────────────
+   get-a-quote.html kendi inline script'inde de bunu çalıştırır.
+   Burada geri kalan tüm sayfalar için çalışır.
+   GTM Custom Event Trigger: event = 'engaged_3_minutes'
+──────────────────────────────────────────────────────────────── */
+(function() {
+  // get-a-quote.html kendi timer'ını içermekte (inline), burada skip et
+  if (document.querySelector('.qform-section')) return;
+  var _engaged = false;
+  setTimeout(function() {
+    if (_engaged) return;
+    _engaged = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'engaged_3_minutes',
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
+  }, 180000); // 3 dakika = 180,000ms
+})();
