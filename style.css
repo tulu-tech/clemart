@@ -256,6 +256,31 @@ body.cursor-hover .cursor-follower {
   line-height: 1;
 }
 
+/* ─── LANGUAGE SWITCHER ─── */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+.lang-switch__opt {
+  color: rgba(255,255,255,0.35);
+  transition: color 0.2s;
+  text-decoration: none;
+  padding: 2px 0;
+}
+.lang-switch__opt:hover { color: var(--gold); }
+.lang-switch__opt--active {
+  color: var(--gold);
+  cursor: default;
+}
+.lang-switch__sep { color: rgba(255,255,255,0.15); }
+
 .nav__links {
   display: flex;
   gap: clamp(24px, 3vw, 48px);
